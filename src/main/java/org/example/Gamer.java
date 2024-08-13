@@ -22,7 +22,7 @@ public class Gamer {
      * @return
      */
     public int firstDoorChoosing(List<Door> doors){
-        int result = new Random().nextInt(1,3);
+        int result = new Random().nextInt(1,4);
         for (Door door : doors) {
             if (door.getDoorNumber() == result){
                 door.setDoorIsChoosen(true);
@@ -33,9 +33,20 @@ public class Gamer {
     /**
      * Метод выбора игрока после удаления одной двери
      */
-    public int secondDoorChoosing(List<Door> doors){
-        int result = 0;
-
-        return result;
+    public List<Door> secondDoorChoosing(List<Door> doors){
+        boolean confirmedChoosen = new Random().nextBoolean();
+        if (confirmedChoosen){
+            System.out.println("Игрок " + this.name + " меняет свой выбор!");
+            for (Door door : doors) {
+                if(door.isDoorIsChoosen()){
+                    door.setDoorIsChoosen(false);
+                }else{
+                    door.setDoorIsChoosen(true);
+                }
+            }
+        }else{
+            System.out.println("Выбор игрока остается прежним!");
+        }
+        return doors;
     }
 }

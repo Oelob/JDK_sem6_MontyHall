@@ -25,7 +25,4 @@ public class Door {
         this.doorIsChoosen = false;
     }
 
-    public boolean openDoor(int doorNumber){
-        return this.hasPrize;
-    }
 }
