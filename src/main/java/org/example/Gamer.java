@@ -1,20 +1,28 @@
 package org.example;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
-
 import java.util.List;
 import java.util.Random;
 
-@AllArgsConstructor
+
 @Getter
+@Setter
 @ToString
 public class Gamer {
 
     private final long id;
     private String name;
+    private boolean hasWin;
+    private boolean gamerHasChangedChoice;
 
+    public Gamer(long id, String name, boolean isWin) {
+        this.id = id;
+        this.name = name;
+        this.hasWin = isWin;
+        this.gamerHasChangedChoice = false;
+    }
 
     /**
      * Метод первого выбора игрока
@@ -37,11 +45,14 @@ public class Gamer {
         boolean confirmedChoosen = new Random().nextBoolean();
         if (confirmedChoosen){
             System.out.println("Игрок " + this.name + " меняет свой выбор!");
+            this.gamerHasChangedChoice = true;
             for (Door door : doors) {
                 if(door.isDoorIsChoosen()){
                     door.setDoorIsChoosen(false);
+//                    door.setDoorIsChoosen(false);
                 }else{
                     door.setDoorIsChoosen(true);
+//                    door.setDoorIsChoosen(true);
                 }
             }
         }else{
